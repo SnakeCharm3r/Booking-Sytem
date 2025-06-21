@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\DataController;
 use App\Http\Controllers\Api\AuthController;
 
 /*
@@ -24,4 +25,6 @@ Route::get('/admin', 'AdminController@index')->middleware('role:admin');
 Route::get('/patient', 'PatientController@index')->middleware('role:patient');
 
 //routes for authentication
-Route::post('/login', [AuthController::class, 'login'])->name('login')->middleware('role:admin,patient');
+Route::get('/data', [DataController::class, 'index']);
+Route::post('/login', [AuthController::class, 'login']);
+

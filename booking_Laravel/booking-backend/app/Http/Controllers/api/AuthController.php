@@ -3,53 +3,59 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Users; 
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    /**
-     * Handle user login and return user data with an API token.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login(Request $request)
-    {
-        // Validate the incoming request data
-        $credentials = $request->validate([
+    //request to Login
+    public function Login( Request $request){
+
+        //request validation
+        $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|string|min:8',
         ]);
 
-        // Attempt to authenticate the user
-        if (!auth()->attempt($credentials)) {
-            return response()->json([
-                'message' => 'Invalid credentials',
-                'status' => 'error',
-            ], 401);
+        //attemt to Login
+        if (!Auth::attempt($request->only('email', 'password'))) 
+        {
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Invalid credentials'
+                ], 401);
+        };
+
+        //get the authenticated user
+        $user = Auth::user();
+
+        //check for he user role
+        if ($user->user_role !== 'admin' && $user->user_role !== 'patient') {
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Unauthorized role'
+                ], 403);
         }
 
-        // Retrieve the authenticated user
-        $user = auth()->user();
+        //generate a new token for the user
+        $token = $user->createToken('authtoken')->plainTextToken;
 
-        // Generate a token for the user
-        $token = $user->createToken('api-token')->plainTextToken;
+        //return the response with the token and user details
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'Login successful',
+                'token' => $token,
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'role' => $user->role,
+                ]
+            ], 200);
 
-        // Return user data and token in the response
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Login successful',
-            'user' => [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'phone_number' => $user->phone_number,
-                'user_role' => $user->user_role,
-                'payment_mode' => $user->payment_mode,
-            ],
-            'token' => $token,
-        ]);
     }
 }
