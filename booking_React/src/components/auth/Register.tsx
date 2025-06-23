@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { Stethoscope, User, Mail, Lock, Phone, Eye, EyeOff } from 'lucide-react';
+import {  User, Mail, Lock, Phone, Eye, EyeOff } from 'lucide-react';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -63,9 +63,13 @@ export default function Register() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <div className="p-3 bg-blue-100 rounded-full">
-              <Stethoscope className="h-8 w-8 text-blue-600" />
+        <div className="flex justify-center mb-4">
+            <div className="p-3 bg-100">
+              <img
+                src="/ccbrt.jpg"
+                alt="Logo"
+                className="h-20 w-20 object-contain"
+              />
             </div>
           </div>
           <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>

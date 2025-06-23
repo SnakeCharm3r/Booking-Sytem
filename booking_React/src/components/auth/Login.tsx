@@ -28,17 +28,17 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
-
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-  <div className="p-3 bg-green-100full">
-  <img
-  src="/ccbrt.jpg"
-  alt="Logo"
-  className="h-20 w-20 object-contain"
-/></div>
-</div>
+            <div className="p-3 bg-green-100">
+              <img
+                src="/ccbrt.jpg"
+                alt="Logo"
+                className="h-20 w-20 object-contain"
+              />
+            </div>
+          </div>
           <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
           <p className="text-gray-600 mt-2">Sign in to your account</p>
         </div>
@@ -110,8 +110,8 @@ export default function Login() {
 
         {/* Demo Info */}
         <div className="mt-8 p-4 bg-gray-50 rounded-lg text-center">
-  <p className="text-xs text-gray-500">A product of Ccbrt Hospital @2025</p>
-</div>
+          <p className="text-xs text-gray-500">A product of Ccbrt Hospital @2025</p>
+        </div>
       </div>
     </div>
   );

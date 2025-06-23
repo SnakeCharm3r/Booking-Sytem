@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Users;
+use App\Models\User;
 
 class UsersData extends Seeder
 {
@@ -14,7 +14,7 @@ class UsersData extends Seeder
     public function run(): void
     {
         //Create an array of user data
-        Users::create([
+        User::create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => bcrypt('admin123'),
@@ -24,7 +24,7 @@ class UsersData extends Seeder
         ]);
         
         //patient credentials
-        Users::create([
+        User::create([
             'name' => 'Patient User',
             'email' => 'patient@example.com',
             'password' => bcrypt('admin123'),
