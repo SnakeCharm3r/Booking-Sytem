@@ -26,7 +26,7 @@ export default function PatientDashboard() {
   ];
 
   return (
-    <Layout title="Patient Dashboard">
+    <Layout title="Home">
       <div className="space-y-8">
         {/* Quick Actions */}
         <div className="bg-white rounded-lg shadow-sm p-6">

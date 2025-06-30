@@ -32,7 +32,7 @@ class AuthController extends Controller
         $user = Auth::user();
 
         //check for he user role
-        if ($user->user_role !== 'admin' && $user->user_role !== 'patient') {
+        if ($user->role !== 'admin' && $user->role !== 'Patient') {
             return response()->json(
                 [
                     'status' => 'error',

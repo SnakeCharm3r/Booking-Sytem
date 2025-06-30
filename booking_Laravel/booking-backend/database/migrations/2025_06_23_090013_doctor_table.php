@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Links to the users table
             $table->string('mct_number')->unique()->nullable(); // Unique medical license number
-            //$table->foreignId('specialty_id')->constrained('specialties')->onDelete('cascade'); // Links to the specialties table
+            $table->foreignId('specialty_id')->constrained('specialties')->onDelete('cascade'); // Links to the specialties table
+            $table->enum('category', ['General Practitioner', 'Specialist', 'Super Specialist'])->default('General Practitioner');
             $table->json('available_slots')->nullable(); // Stores available time slots as JSON
             $table->timestamps();
         });

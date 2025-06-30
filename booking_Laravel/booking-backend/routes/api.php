@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DataController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/admin', 'AdminController@index')->middleware('role:admin');
 Route::get('/patient', 'PatientController@index')->middleware('role:patient');
 
-//routes for authentication
+//testing data retrival
 Route::get('/data', [DataController::class, 'index']);
+//routes for authentication
 Route::post('/login', [AuthController::class, 'login']);
+
+// Route to get all doctors
+Route::get('/doctors', [DoctorController::class, 'index']);
 

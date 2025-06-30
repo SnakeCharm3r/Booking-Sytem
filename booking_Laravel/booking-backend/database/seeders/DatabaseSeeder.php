@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             UsersData::class,
-            SpecialtySeeder::class, // Corrected the typo
-            DoctorCategory::class, // Ensure this is the correct class name
+            SpecialtySeeder::class,
+            DoctorSeeder::class,
         ]);
     }
 }

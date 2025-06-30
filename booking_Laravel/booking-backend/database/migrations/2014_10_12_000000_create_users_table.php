@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone_number')->unique(); // Add this line
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['Doctor', 'Patient', 'Pharmacist'])->default('Patient');
             $table->rememberToken();
+            $table->text('payment_mode')->nullable();
             $table->timestamps();
         });
     }

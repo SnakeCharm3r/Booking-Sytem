@@ -13,23 +13,13 @@ class UsersData extends Seeder
      */
     public function run(): void
     {
-        //Create an array of user data
-        User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('admin123'),
-            'phone_number' => '1234567890',
-            'user_role' => 'admin',
-            'payment_mode' => 'credit_card',
-        ]);
-        
         //patient credentials
         User::create([
             'name' => 'Patient User',
             'email' => 'patient@example.com',
             'password' => bcrypt('admin123'),
             'phone_number' => '1234567890',
-            'user_role' => 'Patient',
+            'role' => 'Patient',
             'payment_mode' => 'Mobile Money',
         ]);
 
