@@ -11,6 +11,7 @@ import DoctorSchedule from './components/admin/DoctorSchedule';
 import Analytics from './components/admin/Analytics';
 import UserManagement from './components/admin/UserManagement';
 import PaymentManagement from './components/admin/PaymentManagement';
+import Landing from './components/Landing/landing'; // <-- Add this import
 
 function App() {
   return (
@@ -18,11 +19,11 @@ function App() {
       <Router>
         <div className="min-h-screen bg-gray-50">
           <Routes>
+            <Route path="/" element={<Landing />} /> {/* <-- Add this route */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/patient/*" element={<ProtectedRoute role="patient"><PatientRoutes /></ProtectedRoute>} />
             <Route path="/admin/*" element={<ProtectedRoute role="admin"><AdminRoutes /></ProtectedRoute>} />
-            <Route path="/" element={<Navigate to="/login" replace />} />
           </Routes>
         </div>
       </Router>

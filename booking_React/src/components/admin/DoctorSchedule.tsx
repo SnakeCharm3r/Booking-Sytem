@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../shared/Layout';
-import { Calendar, Clock, User, Plus, Edit, Trash2 } from 'lucide-react';
+import { Clock,  Plus, Edit, Trash2 } from 'lucide-react';
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
 
 interface Doctor {
@@ -90,6 +90,8 @@ export default function DoctorSchedule() {
                   value={format(selectedDate, 'yyyy-MM-dd')}
                   onChange={(e) => setSelectedDate(new Date(e.target.value))}
                   className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Select a date"
+                  title="Select week start date"
                 />
               </div>
               <div>
@@ -229,10 +231,10 @@ export default function DoctorSchedule() {
                         </td>
                         <td className="py-3 px-4">
                           <div className="flex items-center space-x-2">
-                            <button className="text-blue-600 hover:text-blue-800">
+                            <button className="text-blue-600 hover:text-blue-800" title="Edit Schedule">
                               <Edit className="h-4 w-4" />
                             </button>
-                            <button className="text-red-600 hover:text-red-800">
+                            <button className="text-red-600 hover:text-red-800" title="Delete Schedule">
                               <Trash2 className="h-4 w-4" />
                             </button>
                           </div>
