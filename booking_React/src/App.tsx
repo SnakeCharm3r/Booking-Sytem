@@ -11,7 +11,7 @@ import DoctorSchedule from './components/admin/DoctorSchedule';
 import Analytics from './components/admin/Analytics';
 import UserManagement from './components/admin/UserManagement';
 import PaymentManagement from './components/admin/PaymentManagement';
-import Landing from './components/Landing/landing'; // <-- Add this import
+import Landing from './pages/landing'; // <-- Add this import
 
 function App() {
   return (

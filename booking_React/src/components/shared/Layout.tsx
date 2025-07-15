@@ -4,13 +4,19 @@ import { LogOut, User, ArrowLeft } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
-  title: string;
+  title?: string;
+  showBack?: boolean;
+  showUserNav?: boolean;
 }
 
-export default function Layout({ children, title }: LayoutProps) {
+export default function Layout({
+  children,
+  title,
+  showBack = false,
+  showUserNav = true,
+}: LayoutProps) {
   const { user, logout } = useAuth();
 
-  // Function to go back to previous page
   const handleBack = () => {
     window.history.back();
   };
@@ -21,31 +27,39 @@ export default function Layout({ children, title }: LayoutProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
-              <button
-                onClick={handleBack}
-                className="flex items-center p-2 rounded hover:bg-gray-100 transition-colors group"
-                aria-label="Go back"
-              >
-                <ArrowLeft className="h-5 w-5 text-gray-500 group-hover:text-green-600 transition-colors" />
-              </button>
-              <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+              {showBack && (
+                <button
+                  onClick={handleBack}
+                  className="flex items-center p-2 rounded hover:bg-gray-100 transition-colors group"
+                  aria-label="Go back"
+                >
+                  <ArrowLeft className="h-5 w-5 text-gray-500 group-hover:text-green-600 transition-colors" />
+                </button>
+              )}
+              {title && (
+                <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+              )}
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <User className="h-5 w-5 text-gray-500" />
-                <span className="text-sm text-gray-700">{user?.name}</span>
+
+            {showUserNav && (
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <User className="h-5 w-5 text-gray-500" />
+                  <span className="text-sm text-gray-700">{user?.name}</span>
+                </div>
+                <button
+                  onClick={logout}
+                  className="flex items-center space-x-1 text-gray-500 hover:text-gray-700 transition-colors"
+                >
+                  <LogOut className="h-5 w-5" />
+                  <span className="text-sm">Logout</span>
+                </button>
               </div>
-              <button
-                onClick={logout}
-                className="flex items-center space-x-1 text-gray-500 hover:text-gray-700 transition-colors"
-              >
-                <LogOut className="h-5 w-5" />
-                <span className="text-sm">Logout</span>
-              </button>
-            </div>
+            )}
           </div>
         </div>
       </header>
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
